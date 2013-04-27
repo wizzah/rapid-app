@@ -1,16 +1,22 @@
 <?php
-	
+
 	//scraper? But I barely even know'er!
+	include_once 'key.php';
+	include_once 'googleAPI.php';
+	$game = $_POST['textInput'];
+
+	// include_once 'key.php';
 
 	//howlongtobeat.com doesn't have a proper API and you can't post to their form.
 	//to proceed, we need to scrape google for howlongtobeat's item URL
 
-	$game = $_POST['textInput'];
 
-	// curling google
+	function scrape($key, $game) {
+		// curling google
 	$url = "https://www.google.com/search?q=howlongtobeat%20".$game;
 
-	echo $url."<br />";
+	//don't need to print google URL at the moment
+	// echo "<p>".$url."</p>";
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -51,7 +57,15 @@
 	// which are in a div with a class name of gamepage_estimates
 	$node2 = $xpath2->query('//div[@class="gamepage_estimates"]/div/div');
 
-	// print_r($node2);
-	echo "<div class='averageTime'>".$node2->item(0)->nodeValue."</div>";
+	//plug into google shopping API
+	getPrice($key, $game);
 
+	// print_r($node2);
+	echo "<p class='averageTime'>".$node2->item(0)->nodeValue."</p>";
+	echo "<p class='origin'><a href='http://".$site_url."'>View the original page</a></p>";
+
+	}
+
+	scrape($key, $game);
+	
 ?>
