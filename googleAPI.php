@@ -1,7 +1,5 @@
 <?php
 
-// include_once 'key.php';
-
 //google API
 //This version will be deprecated in September 2013
 
@@ -22,32 +20,18 @@ function getPrice($key, $game) {
 	curl_close($ch);
 
 	$result = json_decode($curl_response, true);
-	// var_dump($result);
 
 	//google shopping link
-	echo "<a href='".$url."'>".$url."</a><br />";
+	$link = $result["items"][0]["product"]["link"];
+	echo "<a href='".$link."'>".$link."</a><br />";
 
-	// echo $result->startIndex;
-	// echo $result[0]->startIndex;
-	// echo $result[0]->startIndex[0];
-	// print_r($result["items"][0]["inventories"][0]["price"]);
+	//get title and price of first item
 	echo $result["items"][0]["product"]["title"];
 	echo $result["items"][0]["product"]["inventories"][0]["price"];
-	// ["product"][0]["inventories"][0]["price"][0];
 
-	//get first item
-	// var_dump($result);
-	// echo $result->$items[0]->$product[0]->$inventories->$price;
 	echo "<br />";
-	// echo $result->$items[0]->$product[0];
-	//not sure if the above works
-	//get title and plug into scrapey(); for that name
-
-	// scrapey($game);
-
 	return $result;
 }
 
-// getPrice($key, $game);
 
 ?>
