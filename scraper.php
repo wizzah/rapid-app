@@ -6,11 +6,10 @@
 	//to proceed, we need to scrape google for howlongtobeat's item URL
 
 	$game = $_POST['textInput'];
-	echo $game."<br />";
 
 	// curling google
 	$url = "https://www.google.com/search?q=howlongtobeat%20".$game;
-	
+
 	echo $url."<br />";
 
 	$ch = curl_init();
@@ -52,7 +51,7 @@
 	// which are in a div with a class name of gamepage_estimates
 	$node2 = $xpath2->query('//div[@class="gamepage_estimates"]/div/div');
 
-	print_r($node2);
-	echo $node2->item(0)->nodeValue;
+	// print_r($node2);
+	echo "<div class='averageTime'>".$node2->item(0)->nodeValue."</div>";
 
 ?>
