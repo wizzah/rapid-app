@@ -20,12 +20,17 @@ $(document).ready(function() {
 			// / /g replaces all instances of space
 			textInput = textInput.replace(/ /g, "+");
 			console.log(textInput);
-
+			$(".results").html("<div class='wait'><img src='img/wait_gif.gif' alt='loading' class='waiting' /><p>loading...</p></div>");
 			$.post("scraper.php", {
 				textInput : textInput
 			}, function(data) {
 				//append results
 				$(".results").html(data);
+
+				//style breaks when howlongtobeat has no results, this is a quick fix.
+				if($(".problem").length > 0) {
+					$(".results img").css("float", "none");
+				}
 			});
 		}
 

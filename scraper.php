@@ -11,6 +11,9 @@
 	
 		$game = $_POST['textInput'];
 
+		//plug into google shopping API
+		$price = getPrice($key, $game);
+
 		$url = "https://www.google.com/search?q=howlongtobeat%20".$game;
 
 		// curling google
@@ -53,9 +56,6 @@
 		//which are in a div with a class name of gamepage_estimates
 		$node2 = $xpath2->query('//div[@class="gamepage_estimates"]/div/div');
 
-		//plug into google shopping API
-		$price = getPrice($key, $game);
-
 		$averageTime = $node2->item(0)->nodeValue;
 
 		//howlongtobeat format is '55h 5m'
@@ -72,17 +72,24 @@
 		$totalHours = round(($totalMins/60), 3);
 		$averageTimeHours = ($price/$totalHours);
 		$averageTimeHours = round($averageTimeHours, 3);
+		if($averageTimeMins == 0) {
+		?>
+			<p class="problem">Howlongtobeat does not list averages for this game. Check the game's page at <a href="http://<?=$site_url;?>">Howlongtobeat</a> to see what's up.</p>
+			<p class="price">$<?=$price;?></p>
+		<?php
+		} else {
 ?>
 	<div class="averages">
-		<p>Average time in minutes: <?=$totalMins;?></p>
-		<p>Average time in hours: <?=$totalHours?></p>
-		<p>Cost of game per minute: $<?=$averageTimeMins;?></p>
-		<p>Cost of game per hour: $<?=$averageTimeHours;?></p>
+		<p class="top">Completing the main story</p>
+		<p class="min">Average time, minutes: <strong><?=$totalMins;?></strong></p>
+		<p class="min">Cost of game per minute: <strong>$<?=$averageTimeMins;?></strong></p>
+		<p class="hrs">Average time, hours: <strong><?=$totalHours?></strong></p>
+		<p class="hrs">Cost of game per hour: <strong>$<?=$averageTimeHours;?></strong></p>
 	</div>
-	<p>Price: <?=$price;?></p>
-	<p><a href="http://<?=$site_url;?>">View this game's page @ Howlongtobeat</a></p>
+	<p class="price">$<?=$price;?></p>
+	<p><a href="http://<?=$site_url;?>">View this game's page at Howlongtobeat</a></p>
 <?php
-
+		}
 	}
 
 	scrape($key, $game);
