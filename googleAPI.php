@@ -3,9 +3,7 @@
 //google API
 //This version will be deprecated in September 2013
 
-// $url = "https://www.googleapis.com/shopping/search/v1/public/products?key=".$key."&country=US&q="."digital+camera&alt=json";
-
-function getPrice($key, $game) {
+function getPrice($key, $game, $price) {
 
 	//every request needs key and country
 	$url = "https://www.googleapis.com/shopping/search/v1/public/products?key=".$key."&country=US&q=".$game."&alt=json";
@@ -23,14 +21,20 @@ function getPrice($key, $game) {
 
 	//google shopping link
 	$link = $result["items"][0]["product"]["link"];
-	echo "<a href='".$link."'>".$link."</a><br />";
+?>
+	<p><a href="<?=$link?>"><?=$link?></a></p>;
 
+<?php
 	//get title and price of first item
-	echo $result["items"][0]["product"]["title"];
-	echo $result["items"][0]["product"]["inventories"][0]["price"];
+	$title = $result["items"][0]["product"]["title"];
+?>
+	<p>Title: <?=$title?></p>
 
-	echo "<br />";
-	return $result;
+<?php
+
+	$price = $result["items"][0]["product"]["inventories"][0]["price"];
+
+	return $price;
 }
 
 

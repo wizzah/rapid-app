@@ -3,12 +3,14 @@
 	//scraper? But I barely even know'er!
 	include_once 'key.php';
 	include_once 'googleAPI.php';
-	$game = $_POST['textInput'];
 
 	//howlongtobeat.com doesn't have a proper API and you can't post to their form.
 	//to proceed, we need to scrape google for howlongtobeat's item URL
 
 	function scrape($key, $game) {
+	
+		$game = $_POST['textInput'];
+
 		// curling google
 		$url = "https://www.google.com/search?q=howlongtobeat%20".$game;
 
@@ -55,14 +57,28 @@
 		$node2 = $xpath2->query('//div[@class="gamepage_estimates"]/div/div');
 
 		//plug into google shopping API
-		getPrice($key, $game);
+		$price = getPrice($key, $game);
 
-		// print_r($node2);
-		echo "<p class='averageTime'>".$node2->item(0)->nodeValue."</p>";
-		echo "<p class='origin'><a href='http://".$site_url."'>View the original page</a></p>";
+		$averageTime = $node2->item(0)->nodeValue;
+
+		//convert to just minutes
+		//howlongtobeat format is '55h 5m'
+		$averageTime = preg_split("/[\shm]+/", $averageTime);
+		$averageTime[0] = (60*(intval($averageTime[0])));
+		$averageTime[1] = (intval($averageTime[1]));
+		$averageTimeMins = ($averageTime[0] + $averageTime[1]);
+		$totalMins = $averageTimeMins;
+		$averageTimeMins = ($price/$averageTimeMins);
+?>
+	<p>Average time in minutes: <?=$totalMins;?></p>
+	<p>Cost of game per minute: <?=$averageTimeMins;?></p>
+	<p class="averageTime">Price: <?=$price;?></p>
+	<p class ="origina"><a href="http://<?=$site_url;?>">View the original page</a></p>
+<?php
 
 	}
 
 	scrape($key, $game);
 	
 ?>
+
