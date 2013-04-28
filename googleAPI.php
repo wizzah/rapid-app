@@ -33,7 +33,6 @@ function getPrice($key, $game, $price) {
 <?php
 
 	$price = $result["items"][0]["product"]["inventories"][0]["price"];
-
 	return $price;
 }
 

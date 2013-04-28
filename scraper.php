@@ -47,10 +47,10 @@
 
 		$doc2 = new DOMDocument();
 		$doc2->loadHTML($howlongtobeat_response);
-
 		$xpath2 = new DOMXpath($doc2);
+
 		//howlongtobeat puts average gameplay length data in two unnamed, nested divs,
-		// which are in a div with a class name of gamepage_estimates
+		//which are in a div with a class name of gamepage_estimates
 		$node2 = $xpath2->query('//div[@class="gamepage_estimates"]/div/div');
 
 		//plug into google shopping API
@@ -58,19 +58,29 @@
 
 		$averageTime = $node2->item(0)->nodeValue;
 
-		//convert to just minutes
 		//howlongtobeat format is '55h 5m'
 		$averageTime = preg_split("/[\shm]+/", $averageTime);
+
+		//convert to just minutes
 		$averageTime[0] = (60*(intval($averageTime[0])));
 		$averageTime[1] = (intval($averageTime[1]));
 		$averageTimeMins = ($averageTime[0] + $averageTime[1]);
 		$totalMins = $averageTimeMins;
-		$averageTimeMins = ($price/$averageTimeMins);
+		//round three places
+		$averageTimeMins = round(($price/$averageTimeMins), 3);
+		//calculate hours
+		$totalHours = round(($totalMins/60), 3);
+		$averageTimeHours = ($price/$totalHours);
+		$averageTimeHours = round($averageTimeHours, 3);
 ?>
-	<p>Average time in minutes: <?=$totalMins;?></p>
-	<p>Cost of game per minute: <?=$averageTimeMins;?></p>
-	<p class="averageTime">Price: <?=$price;?></p>
-	<p class ="original"><a href="http://<?=$site_url;?>">View the original page</a></p>
+	<div class="averages">
+		<p>Average time in minutes: <?=$totalMins;?></p>
+		<p>Average time in hours: <?=$totalHours?></p>
+		<p>Cost of game per minute: $<?=$averageTimeMins;?></p>
+		<p>Cost of game per hour: $<?=$averageTimeHours;?></p>
+	</div>
+	<p>Price: <?=$price;?></p>
+	<p><a href="http://<?=$site_url;?>">View this game's page @ Howlongtobeat</a></p>
 <?php
 
 	}
