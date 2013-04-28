@@ -73,7 +73,7 @@
 	<p>Average time in minutes: <?=$totalMins;?></p>
 	<p>Cost of game per minute: <?=$averageTimeMins;?></p>
 	<p class="averageTime">Price: <?=$price;?></p>
-	<p class ="origina"><a href="http://<?=$site_url;?>">View the original page</a></p>
+	<p class ="original"><a href="http://<?=$site_url;?>">View the original page</a></p>
 <?php
 
 	}
