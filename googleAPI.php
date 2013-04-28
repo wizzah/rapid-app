@@ -7,7 +7,7 @@
 function getPrice($key, $game, $price) {
 
 	//every request needs key and country
-	$url = "https://www.googleapis.com/shopping/search/v1/public/products?key=".$key."&country=US&thumnbnails=220:220&q=video+game+software+".$game."&alt=json";
+	$url = "https://www.googleapis.com/shopping/search/v1/public/products?key=".$key."&country=US&thumnbnails=64:64&q=video+game+software+".$game."&alt=json";
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	//Quick fix because of https
