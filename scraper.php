@@ -79,13 +79,13 @@
 		<?php
 		} else {
 ?>
-	<div class="averages">
+	<aside class="averages">
 		<p class="top">Completing the main story</p>
 		<p class="min">Average time, minutes: <strong><?=$totalMins;?></strong></p>
 		<p class="min">Cost of game per minute: <strong>$<?=$averageTimeMins;?></strong></p>
 		<p class="hrs">Average time, hours: <strong><?=$totalHours?></strong></p>
 		<p class="hrs">Cost of game per hour: <strong>$<?=$averageTimeHours;?></strong></p>
-	</div>
+	</aside>
 	<p class="price">$<?=$price;?></p>
 	<p><a href="http://<?=$site_url;?>">View this game's page at Howlongtobeat</a></p>
 <?php

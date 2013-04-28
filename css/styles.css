@@ -149,7 +149,7 @@ p.price {
 
 .thumbnail {
     float: left;
-    padding-top: 7%;
+    padding-top: 11%;
 }
 
 .problem {
@@ -176,6 +176,12 @@ p.price {
 
 .waiting {
 	float: none;
+}
+
+footer {
+	text-align: center;
+	margin: 1%;
+	font-size: 0.9em;
 }
 
 

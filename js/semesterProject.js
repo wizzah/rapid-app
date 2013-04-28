@@ -8,7 +8,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		//append results once
 		if ($(".results").length == 0) {
-			$("<div class='results'>").appendTo(".content");
+			$("<article class='results'>").appendTo(".content");
 		}
 
 		var textInput = $("input[name='textInput']").val();

@@ -11,17 +11,23 @@
 </head>
 <body>
 	<header>
-		<h1>dime a dozen
-		</h1></header>
+		<h1>dime a dozen</h1>
+	</header>
 	<div class="content">
 			<form method="POST" action="scraper.php">
-				<input type="text" name="textInput" class="textInput" placeholder="enter game here" />
-				<input type="submit" value="submit" class="submit" />
+				<fieldset>
+					<input type="text" name="textInput" class="textInput" placeholder="enter game here" />
+					<input type="submit" value="submit" class="submit" />
+				</fieldset>
 			</form>
 	</div>
-	<footer class="instructions">
+	<section class="instructions">
 		<p>Use the above form to search for a game. It will return the average cost per minute of the game, along with other information.</p>
 		<p>For best accuracy, be as specific as possible. Ex. "Final Fantasy VIII" instead of just "Final Fantasy".</p>
+	</section>
+
+	<footer>
+		Created by Elizabeth Williams of UCF.
 	</footer>
 
 </body>
