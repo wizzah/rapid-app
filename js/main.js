@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+	$(".textInput").on("click", function() {
+		$(this).attr("placeholder", "");
+	});
+
 	$("form").on("submit", function(e) {
 		e.preventDefault();
 		var textInput = $("input[name='textInput']").val();

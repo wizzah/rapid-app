@@ -1,0 +1,91 @@
+html {
+	background-color: #f5f5f5;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.content {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 5%;
+	background-color: #E4F5DD;
+	padding-top: 3%;
+	padding-bottom: 4%;
+	box-shadow: 0px -15px 10px 0px #f5f5f5 inset;
+}
+
+.submit {
+	width: 15%;
+	display: block;
+	margin: 0 auto;
+	padding: 1.5%;
+	font-size: 1.8em;
+}
+
+.textInput {
+	width: 22%;   
+	margin: 1%;
+	padding: 2%;
+	font-size: 2.3em;
+	text-align: center;
+	outline: none;
+}
+
+.instructions {
+    text-align: center;
+    background-color: white;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    box-shadow: 0px -10px 15px 0px #E4F5DD;
+    color: #676E59;
+}
+
+.instructions p {
+    margin-bottom: 0.5%;
+    font-size: 1.2em;
+}
+
+/* Responsive */
+
+@media screen and (max-width:1000px) { 
+
+	body {
+		transition:all .2s linear; 
+		-o-transition:all .2s linear; 
+		-moz-transition:all .2s linear; 
+		-webkit-transition:all .2s linear;
+	}
+
+	.submit { 
+		font-size:1.5em; 
+	}
+
+	.textInput {
+		font-size: 1.8em;
+	}
+	
+	.instructions p {
+	    font-size: 1em;
+	}
+}
+
+
+
+@media screen and (max-width:750px) { 
+
+	body {
+		transition:all .2s linear; 
+		-o-transition:all .2s linear; 
+		-moz-transition:all .2s linear; 
+		-webkit-transition:all .2s linear;
+
+	}
+
+	.submit { 
+		font-size:1.3em; 
+	}
+
+	.textInput {
+		font-size: 1.5em;
+	}
+}

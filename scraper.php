@@ -4,19 +4,16 @@
 	include_once 'key.php';
 	include_once 'googleAPI.php';
 
-	//howlongtobeat.com doesn't have a proper API and you can't post to their form.
-	//to proceed, we need to scrape google for howlongtobeat's item URL
+	//howlongtobeat.com doesn't have an API and you can't get game IDs normally
+	//to proceed, we need to scrape google for howlongtobeat's game pages
 
 	function scrape($key, $game) {
 	
 		$game = $_POST['textInput'];
 
-		// curling google
 		$url = "https://www.google.com/search?q=howlongtobeat%20".$game;
 
-		//don't need to print google URL at the moment
-		// echo "<p>".$url."</p>";
-
+		// curling google
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		//Quick fix because of https
@@ -26,14 +23,14 @@
 		$google_response = curl_exec($ch);
 		curl_close($ch);
 
-		//you can do DOM things in PHP
+		//you can do DOM things in PHP!
 		//xpath is the step before selectors
 		
 		$doc = new DOMDocument();
 		$doc->loadHTML($google_response);
-
 		$xpath = new DOMXpath($doc);
-		//google puts the URL in a cite tag
+
+		//google puts howlongtobeat's URL in a cite tag
 		$node = $xpath->query('//cite');
 
 		$site_url = $node->item(0)->nodeValue;
