@@ -1,0 +1,7 @@
+# Deny access to config.ini. Unfortunately this does not protect you
+# from users on your shared hosting, if permissions are not set properly
+
+<Files config.ini>
+	Order Allow,Deny
+	Deny from all
+</Files>
